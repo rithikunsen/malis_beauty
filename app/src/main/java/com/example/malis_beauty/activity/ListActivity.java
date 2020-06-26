@@ -2,9 +2,7 @@ package com.example.malis_beauty.activity;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
