@@ -10,4 +10,10 @@
     <color name="light_blue">#005d86</color>
     <color name="app_color">#024466</color>
     <color name="light_red">#ee534f</color>
+
+
+    <color name="background_blue">#2b348f</color>
+    <color name="background_screen">#e5e6e7</color>
+    <color name="placeholder_color">#b7b6bb</color>
+    <color name="txt_color">#000</color>
 </resources>

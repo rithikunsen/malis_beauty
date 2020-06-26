@@ -1,8 +1,10 @@
-package com.example.malis_beauty;
+package com.example.malis_beauty.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.malis_beauty.R;
 
 public class MainActivity extends AppCompatActivity {
 
