@@ -2,18 +2,29 @@ package com.example.malis_beauty.activity;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.malis_beauty.R;
 import com.example.malis_beauty.adapter.ListAdapter;
 import com.example.malis_beauty.model.List;
+import com.google.gson.Gson;
+
 
 public class ListActivity extends AppCompatActivity {
+
+    RecyclerView recyclerView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
@@ -22,36 +33,40 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         //Make a reference to the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
 
         //Create and set a layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        //Create and set an adapter
-        List[] lists = loadList();
-        ListAdapter adapter = new ListAdapter(lists);
-        recyclerView.setAdapter(adapter);
+        loadList();
 
     }
 
-    private List[] loadList() {
-        //Dummy data
-        List list1 = new List();
-        list1.setName("Bay Lok Lak");
-        list1.setService("Beef, Green Tomatoes, Garlic, Spring Onion, Egg, Lime, Salt, Pepper, Sugar, Stock");
-        list1.setPrice(10-20, "$");
+    private void loadList() {
+       //Load list from the server using Volley library
+        String url = "http://localhost:8888/lists.php";
 
-        List list2 = new List();
-        list2.setName("Bay Lok Lak");
-        list2.setService("Beef, Green Tomatoes, Garlic, Spring Onion, Egg, Lime, Salt, Pepper, Sugar, Stock");
-        list2.setPrice(10-20, "$");
+        //Create a request
+        StringRequest request = new StringRequest(url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //Convert json string to array of lists using Gson
+                Gson gson = new Gson();
+                List[] lists = gson.fromJson(response, List[].class);
+                //Create and set adapter
+                ListAdapter adapter = new ListAdapter(lists);
+                recyclerView.setAdapter(adapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(ListActivity.this, "Something error while loading data from server!!!", Toast.LENGTH_LONG).show();
+                Log.d("malis_beauty", "Load data error: " + error.getMessage());
+            }
+        });
 
-        List list3 = new List();
-        list3.setName("Bay Lok Lak");
-        list3.setService("Beef, Green Tomatoes, Garlic, Spring Onion, Egg, Lime, Salt, Pepper, Sugar, Stock");
-        list3.setPrice(10-20, "$");
-
-        return new List[] {list1, list2, list3};
+        //Add the request to the queue
+        Volley.newRequestQueue(this).add(request);
     }
 }
