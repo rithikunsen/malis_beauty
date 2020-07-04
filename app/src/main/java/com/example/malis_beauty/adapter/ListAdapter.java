@@ -28,7 +28,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListViewHolder> {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View itemView = layoutInflater.inflate(R.layout.view_holder_list, parent, false);
 
-        ListViewHolder viewHolder = new ListViewHolder(itemView);
         return new ListViewHolder(itemView);
     }
 

@@ -4,7 +4,7 @@ public class List {
 
     private String name;
     private String service;
-    private double price;
+    private String price;
 
     public String getName() {
         return name;
@@ -22,11 +22,11 @@ public class List {
         this.service = service;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price, String $) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }

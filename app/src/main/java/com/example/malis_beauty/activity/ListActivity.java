@@ -45,8 +45,7 @@ public class ListActivity extends AppCompatActivity {
 
     private void loadList() {
        //Load list from the server using Volley library
-        String url = "http://localhost:8888/lists.php";
-
+        String url = "http://10.0.2.2/listData/lists.php";
         //Create a request
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -62,7 +61,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(ListActivity.this, "Something error while loading data from server!!!", Toast.LENGTH_LONG).show();
-                Log.d("malis_beauty", "Load data error: " + error.getMessage());
+                Log.d("list", "Load data error: " + error.getMessage());
             }
         });
 
