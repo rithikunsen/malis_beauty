@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:padding="10dp"
+    android:layout_height="95dp"
+    android:padding="8dp"
     >
+    
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        >
 
     <TextView
         android:id="@+id/txt_name"
@@ -30,5 +40,6 @@
         android:text="Price"
         android:textSize="14dp"
         />
+</LinearLayout>
 
 </LinearLayout>
