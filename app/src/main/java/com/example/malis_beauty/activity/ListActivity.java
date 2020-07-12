@@ -42,7 +42,26 @@ public class ListActivity extends AppCompatActivity {
 
         loadList();
 
+        //create and set an adapter
+//        List[] lists = loadList();
+//        ListAdapter adapter = new ListAdapter(lists);
+//        recyclerView.setAdapter(adapter);
+
     }
+
+//    private List[] loadList() {
+//        List list1 = new List();
+//        list1.setName("Testing Salon");
+//        list1.setService("Haircut");
+//        list1.setPrice("100$");
+//
+//        List list2 = new List();
+//        list2.setName("GG Salon");
+//        list2.setService("Haircut");
+//        list2.setPrice("100$");
+//
+//        return new List[]{list1, list2};
+//    }
 
     private void loadList() {
        //Load list from the server using Volley library

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--    logo area-->
+    <RelativeLayout
+        android:background="#f98377"
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+        <TextView
+            android:padding="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:textColor="#fff"
+            android:layout_alignParentRight="true"
+            />
+
+        <ImageView
+            android:id="@+id/profile_pic"
+            android:layout_width="80dp"
+            android:src="@drawable/ic_profile_pic"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            />
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rithikun Sen"
+            android:textColor="#fff"
+            android:layout_below="@id/profile_pic"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:text="rsen@paragoniu.com"
+            android:textColor="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_name"
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
+
+    <!--    content area-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
