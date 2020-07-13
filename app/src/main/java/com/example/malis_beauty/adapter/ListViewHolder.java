@@ -14,20 +14,20 @@ public class ListViewHolder extends RecyclerView.ViewHolder {
 
     private TextView txtName;
     private TextView txtService;
-    private TextView txtPrice;
+//    private TextView txtPrice;
 
     public ListViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        txtName = itemView.findViewById(R.id.text_name);
+        txtName = itemView.findViewById(R.id.txt_name);
         txtService = itemView.findViewById(R.id.txt_service);
-        txtPrice = itemView.findViewById(R.id.txt_price);
+//        txtPrice = itemView.findViewById(R.id.txt_price);
     }
 
     public void bind(List list) {
         txtName.setText(list.getName());
         txtService.setText(list.getService());
-        txtPrice.setText(list.getPrice());
+//        txtPrice.setText(list.getPrice());
     }
 
 }

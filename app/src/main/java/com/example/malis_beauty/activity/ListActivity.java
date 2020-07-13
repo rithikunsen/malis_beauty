@@ -3,6 +3,8 @@ package com.example.malis_beauty.activity;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -25,7 +27,8 @@ import com.google.gson.Gson;
 
 public class ListActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
+    private ProgressBar progressBar;
+    private RecyclerView recyclerView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         //Make a reference to the RecyclerView
+        progressBar = findViewById(R.id.progress_bar);
         recyclerView = findViewById(R.id.recycler_view);
 
         //Create and set a layout manager
@@ -64,8 +68,10 @@ public class ListActivity extends AppCompatActivity {
 //    }
 
     private void loadList() {
+        showLoading(true);
+
        //Load list from the server using Volley library
-        String url = "http://10.0.2.2/listData/lists.php";
+        String url = "https://my.api.mockaroo.com/users.json?key=fb310fc0";
         //Create a request
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -76,16 +82,29 @@ public class ListActivity extends AppCompatActivity {
                 //Create and set adapter
                 ListAdapter adapter = new ListAdapter(lists);
                 recyclerView.setAdapter(adapter);
+                showLoading(false);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(ListActivity.this, "Something error while loading data from server!!!", Toast.LENGTH_LONG).show();
                 Log.d("list", "Load data error: " + error.getMessage());
+
+                showLoading(false);
             }
         });
 
         //Add the request to the queue
         Volley.newRequestQueue(this).add(request);
+    }
+
+    private void showLoading(boolean state){
+        if(state){
+            recyclerView.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.INVISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
     }
 }
