@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="110dp"
+    android:layout_height="130dp"
     android:padding="8dp">
 
        <com.facebook.drawee.view.SimpleDraweeView
@@ -20,6 +20,7 @@
 
             >
 
+
             <TextView
                 android:id="@+id/txt_name"
                 android:layout_width="wrap_content"
@@ -30,6 +31,14 @@
 
             <TextView
                 android:id="@+id/txt_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Discount: 0%"
+                android:textSize="14dp"
+                />
+
+            <TextView
+                android:id="@+id/txt_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Discount: 0%"

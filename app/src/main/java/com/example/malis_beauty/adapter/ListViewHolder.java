@@ -11,27 +11,34 @@ import com.example.malis_beauty.model.List;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 
-public class ListViewHolder extends RecyclerView.ViewHolder {
+public class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private TextView txtName;
     private TextView txtService;
-//    private TextView txtPrice;
+    private TextView txtPrice;
     private SimpleDraweeView imgProfile;
-
-    public ListViewHolder(@NonNull View itemView) {
+    ListAdapter.OnNoteListener onNoteListener;
+    public ListViewHolder(@NonNull View itemView, ListAdapter.OnNoteListener onNoteListener) {
         super(itemView);
 
         txtName = itemView.findViewById(R.id.txt_name);
         txtService = itemView.findViewById(R.id.txt_service);
-//        txtPrice = itemView.findViewById(R.id.txt_price);
+        txtPrice = itemView.findViewById(R.id.txt_price);
         imgProfile = itemView.findViewById(R.id.img_profile);
+        this.onNoteListener = onNoteListener;
+
+        itemView.setOnClickListener(this);
     }
 
     public void bind(List list) {
         txtName.setText(list.getName());
         txtService.setText(list.getService());
-//        txtPrice.setText(list.getPrice());
+        txtPrice.setText(list.getPrice());
         imgProfile.setImageURI(list.getUserProfile());
     }
 
+    @Override
+    public void onClick(View v) {
+        onNoteListener.onNoteClick(getAdapterPosition());
+    }
 }

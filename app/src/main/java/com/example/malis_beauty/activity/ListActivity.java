@@ -1,5 +1,6 @@
 package com.example.malis_beauty.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,8 +27,8 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 
 
 
-public class ListActivity extends AppCompatActivity {
-
+public class ListActivity extends AppCompatActivity implements ListAdapter.OnNoteListener {
+    private List[] lists;
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
 
@@ -58,7 +59,7 @@ public class ListActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        loadList();
+        loadList(this);
 
         //create and set an adapter
 //        List[] lists = loadList();
@@ -81,7 +82,7 @@ public class ListActivity extends AppCompatActivity {
 //        return new List[]{list1, list2};
 //    }
 
-    private void loadList() {
+    private void loadList(final ListAdapter.OnNoteListener onNoteListener) {
         showLoading(true);
 
        //Load list from the server using Volley library
@@ -92,9 +93,9 @@ public class ListActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 //Convert json string to array of lists using Gson
                 Gson gson = new Gson();
-                List[] lists = gson.fromJson(response, List[].class);
+                lists = gson.fromJson(response, List[].class);
                 //Create and set adapter
-                ListAdapter adapter = new ListAdapter(lists);
+                ListAdapter adapter = new ListAdapter(lists, onNoteListener);
                 recyclerView.setAdapter(adapter);
                 showLoading(false);
             }
@@ -120,5 +121,16 @@ public class ListActivity extends AppCompatActivity {
             progressBar.setVisibility(View.INVISIBLE);
             recyclerView.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onNoteClick(int position) {
+        Log.d("click","position: "+position);
+        Intent intent = new Intent(this, DescriptionActivity.class);
+        intent.putExtra("txt_name",lists[position].getName());
+        intent.putExtra("txt_service",lists[position].getService());
+        intent.putExtra("txt_price",lists[position].getPrice());
+        intent.putExtra("img_profile",lists[position].getUserProfile());
+        startActivity(intent);
     }
 }

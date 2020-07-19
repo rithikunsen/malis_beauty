@@ -16,9 +16,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListViewHolder> {
 
     //Data
     private List[] lists;
+    private OnNoteListener mOnNoteListener;
 
-    public ListAdapter(List[] lists) {
+    public ListAdapter(List[] lists, OnNoteListener onNoteListener) {
         this.lists = lists;
+        this.mOnNoteListener = onNoteListener;
     }
 
     @NonNull
@@ -28,7 +30,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListViewHolder> {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View itemView = layoutInflater.inflate(R.layout.view_holder_list, parent, false);
 
-        return new ListViewHolder(itemView);
+        return new ListViewHolder(itemView, mOnNoteListener);
     }
 
     @Override
@@ -40,5 +42,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListViewHolder> {
     @Override
     public int getItemCount() {
         return lists.length;
+    }
+
+    public interface OnNoteListener {
+        void onNoteClick(int position);
     }
 }

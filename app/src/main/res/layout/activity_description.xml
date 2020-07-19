@@ -8,7 +8,29 @@
         android:background="#f98377"
         android:layout_width="match_parent"
         android:layout_height="200dp">
-
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/img_profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            />
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rithikun Sen"
+            android:textColor="#fff"
+            android:layout_below="@id/img_profile"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:text="rsen@paragoniu.com"
+            android:textColor="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_name"
+            android:layout_centerHorizontal="true"
+            />
     </RelativeLayout>
 
     <!--    content area-->
@@ -17,7 +39,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
+
         <TextView
+            android:id="@+id/txt_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description:"
@@ -25,11 +49,14 @@
             android:textStyle="bold"
             />
         <TextView
+            android:id="@+id/txt_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="_____________________________________________________________________________________________________________________________________________________________________________________" />
+            android:text="Service:"
+            />
 
         <TextView
+            android:id="@+id/txt_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Photo and Experience:"
