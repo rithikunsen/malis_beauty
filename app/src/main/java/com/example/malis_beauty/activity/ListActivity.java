@@ -1,7 +1,6 @@
 package com.example.malis_beauty.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -23,6 +22,8 @@ import com.example.malis_beauty.R;
 import com.example.malis_beauty.adapter.ListAdapter;
 import com.example.malis_beauty.model.List;
 import com.google.gson.Gson;
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 
 
 public class ListActivity extends AppCompatActivity {
@@ -32,9 +33,22 @@ public class ListActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
+//        Button button_list;
+
+        super.onCreate(savedInstanceState);
+        Fresco.initialize(this);
         setContentView(R.layout.activity_list);
+
+//        button_list = (Button) findViewById(R.id.btn_book);
+
+//        button_list.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(ListActivity.this, DescriptionActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         //Make a reference to the RecyclerView
         progressBar = findViewById(R.id.progress_bar);
